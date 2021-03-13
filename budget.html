@@ -1,0 +1,767 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <style>
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body {
+    color: #555;
+    font-family: Open Sans;
+    font-size: 16px;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
+}
+
+.right { float: right; }
+.red { color: #FF5049 !important; }
+.red-focus:focus { border: 1px solid #FF5049 !important; }
+
+/**********************************************
+*** TOP PART
+**********************************************/
+
+.top {
+    height: 40vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.budget {
+    position: absolute;
+    width: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.budget__title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.budget__value {
+    font-weight: 300;
+    font-size: 46px;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.budget__income,
+.budget__expenses {
+    padding: 12px;
+    text-transform: uppercase;
+}
+
+.budget__income {
+    margin-bottom: 10px;
+    background-color: #28B9B5;
+}
+
+.budget__expenses {
+    background-color: #FF5049;
+}
+
+.budget__income--text,
+.budget__expenses--text {
+    float: left;
+    font-size: 13px;
+    color: #444;
+    margin-top: 2px;
+}
+
+.budget__income--value,
+.budget__expenses--value {
+    letter-spacing: 1px;
+    float: left;
+}
+
+.budget__income--percentage,
+.budget__expenses--percentage {
+    float: left;
+    width: 34px;
+    font-size: 11px;
+    padding: 3px 0;
+    margin-left: 10px;
+}
+
+.budget__expenses--percentage {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    border-radius: 3px;
+}
+
+
+/**********************************************
+*** BOTTOM PART
+**********************************************/
+
+/***** FORM *****/
+.add {
+    padding: 14px;
+    border-bottom: 1px solid #e7e7e7;
+    background-color: #f7f7f7;
+}
+
+.add__container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.add__type {
+    width: 55px;
+    border: 1px solid #e7e7e7;
+    height: 44px;
+    font-size: 18px;
+    color: inherit;
+    background-color: #fff;
+    margin-right: 10px;
+    font-weight: 300;
+    transition: border 0.3s;
+}
+
+.add__description,
+.add__value {
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+
+.add__description { width: 400px;}
+.add__value { width: 100px;}
+
+.add__btn {
+    font-size: 35px;
+    background: none;
+    border: none;
+    color: #28B9B5;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.1;
+    margin-left: 10px;
+}
+
+.add__btn:active { transform: translateY(2px); }
+
+.add__type:focus,
+.add__description:focus,
+.add__value:focus {
+    outline: none;
+    border: 1px solid #28B9B5;
+}
+
+.add__btn:focus { outline: none; }
+
+/***** LISTS *****/
+.container {
+    width: 1000px;
+    margin: 60px auto;
+}
+
+.income {
+    float: left;
+    width: 475px;
+    margin-right: 50px;
+}
+
+.expenses {
+    float: left;
+    width: 475px;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.icome__title { color: #28B9B5; }
+.expenses__title { color: #FF5049; }
+
+.item {
+    padding: 13px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.item:first-child { border-top: 1px solid #e7e7e7; }
+.item:nth-child(even) { background-color: #f7f7f7; }
+
+.item__description {
+    float: left;
+}
+
+.item__value {
+    float: left;
+    transition: transform 0.3s;
+}
+
+.item__percentage {
+    float: left;
+    margin-left: 20px;
+    transition: transform 0.3s;
+    font-size: 11px;
+    background-color: #FFDAD9;
+    padding: 3px;
+    border-radius: 3px;
+    width: 32px;
+    text-align: center;
+}
+
+.income .item__value,
+.income .item__delete--btn {
+    color: #28B9B5;
+}
+
+.expenses .item__value,
+
+.expenses .item__delete--btn {
+    color: #FF5049;
+}
+
+
+.item__delete {
+    float: left;
+}
+
+.item__delete--btn {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    display: none;
+}
+
+.item__delete--btn:focus { outline: none; }
+.item__delete--btn:active { transform: translateY(2px); }
+
+.item:hover .item__delete--btn { display: block; }
+.item:hover .item__value { transform: translateX(-20px); }
+.item:hover .item__percentage { transform: translateX(-20px); }
+
+
+.unpaid {
+    background-color: #FFDAD9 !important;
+    cursor: pointer;
+    color: #FF5049;
+
+}
+
+.unpaid .item__percentage { box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1); }
+.unpaid:hover .item__description { font-weight: 900; }
+        </style>
+        <title>Budgety</title>
+    </head>
+    <body>
+        
+        <div class="top">
+            <div class="budget">
+                <div class="budget__title">
+                    Available Budget in <span class="budget__title--month">%Month%</span>:
+                </div>
+                
+                <div class="budget__value">0</div>
+                
+                <div class="budget__income clearfix">
+                    <div class="budget__income--text">Income</div>
+                    <div class="right">
+                        <div class="budget__income--value">0</div>
+                        <div class="budget__income--percentage">&nbsp;</div>
+                    </div>
+                </div>
+                
+                <div class="budget__expenses clearfix">
+                    <div class="budget__expenses--text">Expenses</div>
+                    <div class="right clearfix">
+                        <div class="budget__expenses--value">0</div>
+                        <div class="budget__expenses--percentage">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="bottom">
+            <div class="add">
+                <div class="add__container">
+                    <select class="add__type">
+                        <option value="inc" selected>+</option>
+                        <option value="exp">-</option>
+                    </select>
+                    <input type="text" class="add__description" placeholder="Add description">
+                    <input type="number" class="add__value" placeholder="Value">
+                    <button class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
+                </div>
+            </div>
+            
+            <div class="container clearfix">
+                <div class="income">
+                    <h2 class="icome__title">Income</h2>
+                    
+                    <div class="income__list">
+                       
+                        <!--
+                        <div class="item clearfix" id="income-0">
+                            <div class="item__description">Salary</div>
+                            <div class="right clearfix">
+                                <div class="item__value">+ 2,100.00</div>
+                                <div class="item__delete">
+                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="item clearfix" id="income-1">
+                            <div class="item__description">Sold car</div>
+                            <div class="right clearfix">
+                                <div class="item__value">+ 1,500.00</div>
+                                <div class="item__delete">
+                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                        
+                    </div>
+                </div>
+                
+                
+                
+                <div class="expenses">
+                    <h2 class="expenses__title">Expenses</h2>
+                    
+                    <div class="expenses__list">
+                       
+                        <!--
+                        <div class="item clearfix" id="expense-0">
+                            <div class="item__description">Apartment rent</div>
+                            <div class="right clearfix">
+                                <div class="item__value">- 900.00</div>
+                                <div class="item__percentage">21%</div>
+                                <div class="item__delete">
+                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item clearfix" id="expense-1">
+                            <div class="item__description">Grocery shopping</div>
+                            <div class="right clearfix">
+                                <div class="item__value">- 435.28</div>
+                                <div class="item__percentage">10%</div>
+                                <div class="item__delete">
+                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        <script>
+            var budgetcontroller=(function(){
+
+                   var Expense=function(id,description,value){
+                            this.id=id;
+                            this.description=description;
+                            this.value=value;
+                    };
+
+                    var Income=function(id,description,value){
+                                 this.id=id;
+                                 this.description=description;
+                                 this.value=value;
+                                
+                    };
+
+                   var data={
+                       allitems:{
+                           exp:[],
+                           inc:[]
+                       },
+
+                       totals:{
+                           exp:0,
+                           inc:0
+                       },
+                       budget:0,
+                       percentage:0
+
+                   };
+                   
+                   var calculatetotal=function(type){
+                    var sum=0;
+                      data.allitems[type].forEach(function(cur) {
+                        
+                          sum+=cur.value;
+                      });
+                      data.totals[type]=sum;
+                   };
+                   
+                   
+                   
+                   
+
+                   
+
+                   return{
+  additems:function(type,description,value){
+
+     var newitem,id;
+   //    if(data.allitems[type]==="inc"){
+        //  console.log(data.allitems[type]);
+
+   //    }
+   
+        if(data.allitems[type].length>0){
+            // id=data.allitems[type][data.allitems[type].length].id+1;
+             var idd=data.allitems[type].length;
+              id=idd+1;
+             
+                     
+         }else{
+          id=1;
+        
+         }
+//                 if (data.allItems[type].length > 0) {
+//     ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+// } else {
+//     ID = 0;
+// }
+      
+   //    if(type==='exp'){
+   //        newitem=Expense(id,description,value);
+   //    }
+   //    else if(type==='inc'){
+   //        newitem=Income(id,description,value);
+   //        console.log(newitem);
+   //    }
+
+
+      if(type==='exp'){
+          newitem=new Expense(id,description,value);
+      }
+      else if(type==='inc'){
+          
+          newitem=new Income(id,description,value);
+      }
+          console.log(newitem);
+         // console.log(idds);
+      data.allitems[type].push(newitem);
+
+      
+  },
+
+  deleteitem:function(type,description){
+       var des=data.allitems[type].map(function(current){
+           return current.description;
+       });
+
+       var index=des.indexOf(description);
+
+       if(index!==-1){
+           data.allitems[type].splice(index,1);
+       }
+  },
+
+  calculatebudget:function(type){
+      calculatetotal(type);
+      
+      data.budget=data.totals.inc-data.totals.exp;
+        
+    if(data.totals.inc>0){
+        data.percentage=Math.floor((data.totals.exp/data.totals.inc)*100);
+    }
+      
+  },
+
+  testing:function(){
+      console.log(data);
+  },
+
+  getbudget:function(){
+      return{
+       budget:data.budget,
+       totalinc:data.totals.inc,
+       totalexp:data.totals.exp,
+       percentage:data.percentage
+
+      };
+  }
+
+ 
+
+  
+   
+   
+
+
+ 
+};
+
+
+
+                  
+
+            })();
+
+            var UIcontroller=(function(){
+                    var html,element;
+
+                    var formatnumber=function(num,type){
+                   var numsplit,int,dec,type;
+
+                   num=Math.abs(num);
+                   num=num.toFixed(2);
+
+                   numsplit=num.split(".")
+                   console.log(numsplit);
+
+                   int=numsplit[0];
+
+                   if(int.length>3){
+                       int=int.substr(0,int.length-3)+","+int.substr(int.length-3,int.length);
+                   }
+                   dec=numsplit[1];
+
+                   return (type==="exp"?"-":"+")+" "+int+"."+dec;
+               };
+                return{
+                    getinput:function(){
+                        return{
+                         type:document.querySelector(".add__type").value,
+                         description:document.querySelector(".add__description").value,
+                         value:parseFloat(document.querySelector(".add__value").value)
+                        };
+                        
+                    },
+
+                    addlistitem:function(description,type,value){
+                        //console.log(obj);
+
+if(type==="inc"){
+    
+    element=".income__list";
+        html=` <div class="item clearfix" id="inc-%id%">
+     <div class="item__description">${description}</div>
+     <div class="right clearfix id="inc">
+            <div class="item__value">${formatnumber(value,type)}</div>
+         <div class="item__delete">
+             <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+         </div>
+     </div>
+ </div>`;
+
+
+    }
+else if(type==="exp"){
+    element=".expenses__list";
+    html=`<div class="item clearfix" id="exp-%id%">
+                            <div class="item__description ">${description}</div>
+                            <div class="right clearfix" id="exp">
+                                <div class="item__value">${formatnumber(value,type)}</div>
+                                <div class="item__percentage"></div>
+                                <div class="item__delete">
+                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                                </div>
+                            </div>
+                        </div>`;
+   }
+   //console.log(description);
+          //newhtml=html.replace("%id",obj.id);
+          //newhtml=html.replace("%description%",description);
+          // var newhtml=html.replace("%value%",obj.value);
+          // newhtml=html.replace("%description%",obj.description);
+           document.querySelector(element).insertAdjacentHTML('beforeend',html);
+                 
+                },
+
+                deletelistitem:function(desclass,idey){
+                  //  document.getElementById(desclass);
+       var el=desclass
+       console.log(idey);
+       el.parentNode.remove();
+       //el.parentNode.removeChild(el);
+       //idey.remove();
+       //console.log(el.previousElementSibling);
+       //el.parentNode.removeChild(el.previousElementSibling);
+  },
+                clearfields:function(){
+                    // var fields,arrfields;
+                    // fields=document.querySelectorAll(".add__type"+","+".add__description"+","+".add__value");
+
+                    // arrfields=Array.prototype.slice.call(fields);
+
+                    // arrfields.foreach((current,index,array)=>{
+                    //      current.value="";
+                    // });
+                    document.querySelector(".add__type").value="inc";
+                    document.querySelector(".add__description").value=" ";
+                    document.querySelector(".add__value").value="";
+                },
+                displaybudget:function(obj){
+                    var type;
+                    obj.budget>0?type= "inc":type="exp";
+                    document.querySelector(".budget__value").textContent=formatnumber(obj.budget,type);
+                    document.querySelector(".budget__income--value").textContent=formatnumber(obj.totalinc,"inc");
+                    document.querySelector(".budget__expenses--value").textContent=formatnumber(obj.totalexp,"exp");
+                    document.querySelector(".budget__expenses--percentage").textContent=obj.percentage+"%";
+
+
+                },
+
+                displaymonth:function(){
+                    var now,months,month,year
+
+                    now= new Date();
+
+                    month=now.getMonth();
+
+                    months=["January","Feburary","March","Apirl","May","June","July","August","September","October","November","December"];
+
+                    year=now.getFullYear();
+
+                    document.querySelector(".budget__title--month").textContent=months[month]+" "+year;
+                }
+    //             budget:data.budget,
+    //    totalinc:data.totals.inc,
+    //    totalexp:data.totals.exp,
+    //    percentage:data.percentage
+              
+                
+                
+            };
+            })();
+
+            var controller=(function(budgetcontroller,UIcontroller){
+
+
+               
+
+                var crtladditem=function(){
+                   var input=UIcontroller.getinput();
+
+                   //budgetcontroller.additems(input.type,input.description,input.value);
+                   if(input.description!=""&&!isNaN(input.value)&&input.value>0){
+                    budgetcontroller.additems(input.type,input.description,input.value);
+                  // console.log( budgetcontroller.additems(input.type,input.description,input.value).id);
+                   UIcontroller.addlistitem(input.description,input.type,input.value);
+                //console.log(budgetcontroller.additems.idds);
+                   UIcontroller.clearfields();
+
+                   var updatebudgetcontroller=function(){
+                    budgetcontroller.calculatebudget(input.type);
+
+                   var budget= budgetcontroller.getbudget();
+
+                   console.log(budget);
+
+                   UIcontroller.displaybudget(budget);
+                };
+
+                   updatebudgetcontroller();
+
+                   
+                   }
+
+                  
+                };
+
+            var setupeventlistner=function(){
+                    var btn=document.querySelector(".add__btn");
+                    btn.addEventListener("click",function(){
+                        crtladditem();
+                    });
+
+                document.addEventListener("keypress",function(event){
+                    
+                 if(event.keycode===13){
+                    crtladditem();
+                   }
+                });
+
+                document.querySelector(".container").addEventListener("click",ctrldelitem);
+            };
+
+                var ctrldelitem=function(event){
+                    var id=event.target.parentNode.parentNode.parentNode.parentNode.id;
+                    var ide=event.target.parentNode.parentNode.parentNode;
+                    //var idey=event.target.parentNode.parentNode.parentNode.id;
+                    var des=event.target.parentNode.parentNode.parentNode.previousElementSibling.innerHTML;
+                   var classy="item clearfixitem";
+                    var desclass=event.target.parentNode.parentNode.parentNode;
+                    //var idey= event.target.parentNode.parentNode.parentNode.previousElementSibling;
+                    var idey=desclass.previousElementSibling;
+                    //console.log(id);
+                   // console.log(desclass);
+                    var splitid=id.split("-");
+                     var type=splitid[0];
+                     var description=des;
+                     //console.log(des);
+                     //console.log(type);
+
+                     budgetcontroller.deleteitem(type,description);
+                     UIcontroller.deletelistitem(desclass,idey);
+                     
+                     var updatebudgetcontroller=function(){
+                    budgetcontroller.calculatebudget(type);
+
+                   var budget= budgetcontroller.getbudget();
+
+                   console.log(budget);
+
+                   UIcontroller.displaybudget(budget);
+                };
+                     updatebudgetcontroller();
+                };
+            
+          return{
+              init:function(){
+                setupeventlistner();
+                UIcontroller.displaymonth();
+        }
+    };      
+
+        })(budgetcontroller,UIcontroller);
+
+
+        controller.init();
+          
+               
+            
+        </script>
+    </body>
+</html>
